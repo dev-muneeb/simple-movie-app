@@ -1,3 +1,64 @@
 {
-    "extends": "react-app"
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": "airbnb",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "linebreak-style": 0,
+        "prefer-destructuring": 1,
+        "react/destructuring-assignment": 0,
+        "max-len": [
+        1,
+        {
+            "code": 120,
+            "comments": 120 
+        }
+        ],
+        "react/jsx-filename-extension": [
+        1,
+        {
+            "extensions": [
+            ".js",
+            ".jsx"
+            ]
+        }
+        ],
+        "no-use-before-define": [2, { "functions": false }],
+        "react/prop-types": 0,
+        "import/no-extraneous-dependencies": [
+        "error",
+        {
+            "packageDir": "./"
+        }
+        ],
+        "react/jsx-one-expression-per-line": 0,
+        "react/require-default-props": [
+        2,
+        {
+            "forbidDefaultForRequired": false
+        }
+        ],
+        "react/default-props-match-prop-types": [
+        2,
+        {
+            "allowRequiredDefaults": true
+        }
+        ],
+        "react/no-deprecated": 1
+    }
 }
