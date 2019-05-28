@@ -1,4 +1,6 @@
 [ignore]
+; Ignore node_modules and use libdefs
+.*/node_modules/.*
 
 [include]
 
@@ -7,5 +9,18 @@
 [lints]
 
 [options]
+module.system.node.resolve_dirname=src
+
+; Support direct import of SCSS
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.css
+module.file_ext=.scss
+module.name_mapper.extension='css' -> 'empty/object'
+module.name_mapper.extension='scss' -> 'empty/object'
 
 [strict]
+
+[version]
+^0.76.0

@@ -1,0 +1,33 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-no-unsupported-browser-features",
+    "stylelint-scss"
+  ],
+  "ignoreFiles": ["**/*.js"],
+  "rules": {
+    "plugin/no-unsupported-browser-features": [
+      true, 
+      {
+        "severity": "warning"
+      }
+    ],
+    "declaration-property-unit-whitelist": {
+      "font-size": ["rem"],
+      "line-height": ["rem"],
+      "letter-spacing": ["rem"]
+    },
+    "color-named": "never",
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "color-hex-length": "long",
+    "at-rule-empty-line-before": [
+      "always",
+      {
+        "ignore": [
+          "inside-block"
+        ]
+      }
+    ]
+  }
+}
