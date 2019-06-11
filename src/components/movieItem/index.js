@@ -9,7 +9,8 @@ import {
 } from 'reactstrap';
 
 type Props = {
-    data: Object,
+    data: Array<Object>,
+    getGenres: Function,
 };
 
 const MovieItem = (props: Props) => {
@@ -18,12 +19,17 @@ const MovieItem = (props: Props) => {
     overview: description,
     poster_path: image,
     vote_average: rating,
+    genre_ids: genreIds,
   } = props.data;
+
   return (
     <Card>
       <CardImg bottom width="100%" src={`https://tmdb-image-viewer.herokuapp.com/image${image}`} alt={title} />
       <CardBody>
-        <CardTitle>{title}</CardTitle>
+        <CardTitle><h3>{title}</h3></CardTitle>
+        <CardText>
+          <small className="text-muted">{props.getGenres(genreIds)}</small>
+        </CardText>
         <CardText>{description}</CardText>
         <CardText>
           <small className="text-muted">Rating: {rating}</small>
