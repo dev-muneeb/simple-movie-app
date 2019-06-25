@@ -1,4 +1,4 @@
-import MovieItem from './MovieItem';
+import MovieItem from './movieItem';
 
 export {
   MovieItem,
