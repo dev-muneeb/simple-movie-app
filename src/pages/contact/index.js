@@ -1,10 +1,15 @@
 // @flow
 import * as React from 'react';
+import { Container } from 'reactstrap';
+import { Header } from 'components';
 
 const Contact = () => (
-  <div>
+  <React.Fragment>
+    <Header />
+    <Container>
         Contact Page
-  </div>
+    </Container>
+  </React.Fragment>
 );
 
 export default Contact;

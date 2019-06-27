@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import movies from 'data/movies';
 import genres from 'data/genres';
-import { MovieItem } from 'components';
+import { MovieItem, Header } from 'components';
 
 const Main = () => {
   const getGenres = (ids: Array) => {
@@ -15,11 +15,14 @@ const Main = () => {
     return filterGenres.map(item => `${item.name} `);
   };
   return (
-    <Container>
-      <Row>
-        {movies.map(item => <Col xs="12" sm="4" key={item.id}><MovieItem data={item} getGenres={getGenres} /></Col>)}
-      </Row>
-    </Container>
+    <React.Fragment>
+      <Header />
+      <Container>
+        <Row>
+          {movies.map(item => <Col xs="12" sm="4" key={item.id}><MovieItem data={item} getGenres={getGenres} /></Col>)}
+        </Row>
+      </Container>
+    </React.Fragment>
   );
 };
 
