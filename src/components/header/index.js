@@ -40,10 +40,10 @@ class Header extends React.Component<Props, State> {
 
     render() {
       return (
-        <Navbar className="header" light>
+        <Navbar className="header" light expand="md">
           <Container>
-            <NavbarToggler onClick={this.toggle} />
             <NavbarBrand href="/">Find My Movies</NavbarBrand>
+            <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem

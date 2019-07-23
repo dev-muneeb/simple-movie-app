@@ -7,6 +7,7 @@ import {
   CardText,
   CardBody,
 } from 'reactstrap';
+import './MovieItem.scss';
 
 type Props = {
     data: Array<Object>,
@@ -23,7 +24,7 @@ const MovieItem = (props: Props) => {
   } = props.data;
 
   return (
-    <Card>
+    <Card className="movieItemCard">
       <CardImg bottom width="100%" src={`https://tmdb-image-viewer.herokuapp.com/image${image}`} alt={title} />
       <CardBody>
         <CardTitle><h3>{title}</h3></CardTitle>

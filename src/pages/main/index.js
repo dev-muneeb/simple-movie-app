@@ -1,13 +1,12 @@
 // @flow
 import * as React from 'react';
 import {
-  Container,
   Row,
   Col,
 } from 'reactstrap';
 import movies from 'data/movies';
 import genres from 'data/genres';
-import { MovieItem, Header } from 'components';
+import { MovieItem, Header, Page } from 'components';
 
 const Main = () => {
   const getGenres = (ids: Array) => {
@@ -17,11 +16,11 @@ const Main = () => {
   return (
     <React.Fragment>
       <Header />
-      <Container>
+      <Page title="Home">
         <Row>
           {movies.map(item => <Col xs="12" sm="4" key={item.id}><MovieItem data={item} getGenres={getGenres} /></Col>)}
         </Row>
-      </Container>
+      </Page>
     </React.Fragment>
   );
 };
