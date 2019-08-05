@@ -1,5 +1,5 @@
 // @flow
-import * as React from 'react';
+import React, { useState } from 'react';
 import {
   Collapse,
   Navbar,
@@ -16,60 +16,51 @@ import './Header.scss';
 type Props = {
     history: RouterHistory
 }
-type State = {
-    isOpen: Boolean,
-}
 
-class Header extends React.Component<Props, State> {
-    state = {
-      isOpen: false,
+const Header = (props:Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const gotoPage = (e: Object) => {
+    const routeName = e.target.getAttribute('data-route-name');
+    if (routeName && routeName !== props.history.location.pathname) {
+      props.history.push(routeName);
     }
+  };
 
-    gotoPage = (e: Object) => {
-      const routeName = e.target.getAttribute('data-route-name');
-      if (routeName && routeName !== this.props.history.location.pathname) {
-        this.props.history.push(routeName);
-      }
-    };
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
 
-    toggle = () => {
-      this.setState(prevState => ({
-        isOpen: !prevState.isOpen,
-      }));
-    }
-
-    render() {
-      return (
-        <Navbar className="header" light expand="md">
-          <Container>
-            <NavbarBrand href="/">Find My Movies</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                <NavItem
-                  className="headerLink"
-                  data-route-name="/"
-                  onClick={this.gotoPage}
-                  role="button"
-                  tabIndex={0}
-                >
-                                Home
-                </NavItem>
-                <NavItem
-                  className="headerLink"
-                  data-route-name="/contact"
-                  onClick={this.gotoPage}
-                  role="button"
-                  tabIndex={0}
-                >
-                                Contact
-                </NavItem>
-              </Nav>
-            </Collapse>
-          </Container>
-        </Navbar>
-      );
-    }
-}
+  return (
+    <Navbar className="header" light expand="md">
+      <Container>
+        <NavbarBrand href="/">Find My Movies</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ml-auto" navbar>
+            <NavItem
+              className="headerLink"
+              data-route-name="/"
+              onClick={gotoPage}
+              role="button"
+              tabIndex={0}
+            >
+                            Home
+            </NavItem>
+            <NavItem
+              className="headerLink"
+              data-route-name="/contact"
+              onClick={gotoPage}
+              role="button"
+              tabIndex={0}
+            >
+                            Contact
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Container>
+    </Navbar>
+  );
+};
 
 export default withRouter(Header);
