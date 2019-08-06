@@ -36,6 +36,8 @@ const MovieItem = (props: Props) => {
     genre_ids: genreIds,
   } = data;
 
+  console.log(id);
+
   const toggleInterested = () => {
     if (isInterested) {
       removeInterested(id);
@@ -63,4 +65,4 @@ const MovieItem = (props: Props) => {
   );
 };
 
-export default MovieItem;
+export default React.memo(MovieItem);

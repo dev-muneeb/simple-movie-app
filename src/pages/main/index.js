@@ -1,5 +1,11 @@
 // @flow
-import React, { useContext, useReducer } from 'react';
+import React, {
+  useContext,
+  useReducer,
+  useEffect,
+  useRef,
+  useCallback,
+} from 'react';
 import {
   Row,
   Col,
@@ -25,21 +31,42 @@ const appReducer = (state, action) => {
         interested: state.interested.filter(item => item !== action.payload),
       };
     }
+    case 'resetInterested': {
+      return {
+        ...state,
+        interested: action.payload,
+      };
+    }
     default:
       return state;
   }
 };
 
 const Context = React.createContext();
+const useEffectOnce = (cb) => {
+  const didRun = useRef(false);
+  if (!didRun.current) {
+    cb();
+    didRun.current = true;
+  }
+};
 
 const Main = () => {
   const [state, dispatch] = useReducer(appReducer, { interested: [] });
-  const getGenres = (ids: Array) => {
+  const getGenres = useCallback((ids: Array) => {
     const filterGenres = genres.filter(genre => ids.includes(genre.id));
     return filterGenres.map(item => `${item.name} `);
-  };
-  const addInterested = id => dispatch({ type: 'addInterested', payload: id });
-  const removeInterested = id => dispatch({ type: 'removeInterested', payload: id });
+  }, []);
+
+  useEffectOnce(() => {
+    const rawData = localStorage.getItem('interestedData');
+    dispatch({ type: 'resetInterested', payload: JSON.parse(rawData) });
+  });
+  useEffect(() => {
+    localStorage.setItem('interestedData', JSON.stringify(state.interested));
+  }, [state.interested]);
+  const addInterested = useCallback(id => dispatch({ type: 'addInterested', payload: id }), []);
+  const removeInterested = useCallback(id => dispatch({ type: 'removeInterested', payload: id }), []);
   return (
     <React.Fragment>
       <Header />
